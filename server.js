@@ -15,15 +15,13 @@ var server = http.createServer((req, res) => {
   switch (req.method) {
     case 'GET':
       if (req.url == '/') {
-        console.log('dead');
         fs.readFile(`${FILE}`, (err, data) => {
           res.end(data);
         });
       } else {
-        var location = path.join(__dirname, req.url) //
-        console.log('loca', location);
+        var location = path.join(__dirname, req.url)
         fs.readFile(location, (err, data) => {
-          console.log('hey this is data', data);
+          if (location.includes('.css')) res.writeHead(200, { 'Content-Type':'text/css' });
           res.end(data);
         });
       }
