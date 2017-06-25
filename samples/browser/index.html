@@ -16,41 +16,9 @@
   <div class="btn-container">
     <img src="img/unpressed.png" srcset="img/unpressed@2x.png 2x, img/unpressed@3x.png 3x"
 		 class="btn-talk">
-    <!-- <span id="statusDiv">Idle</span> -->
   </div>
 
   <div class="talk-output"></div>
-
-  
-    <!-- <table width="100%">
-        <tr>
-            <td></td>
-            <td>
-                <button id="startBtn" disabled="disabled">Start</button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Current hypothesis: <span id="hypothesisDiv"></span></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <textarea id="phraseDiv" style="width:500px;height:200px"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Status: </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <textarea id="responseDiv" style="width:500px;height:200px"></textarea>
-            </td>
-        </tr>
-    </table> -->
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
     <script>
         if (window.location.protocol == "file:") {
@@ -72,16 +40,6 @@
             });
         }
 
-        // document.addEventListener('keypress', function(e) {
-        //   switch (e.keyCode) {
-        //     case 32:
-        //       startListening();
-        //       break;
-        //     default:
-        //       break;
-        //   }
-        // });
-        
         function RecognizerSetup(SDK, recognitionMode, language, format, subscriptionKey) {
             var recognizerConfig = new SDK.RecognizerConfig(
                 new SDK.SpeechConfig(
@@ -108,11 +66,9 @@
                         break;
                     case "SpeechStartDetectedEvent" :
                         UpdateStatus("Listening_DetectedSpeech_Recognizing");
-                        // console.log(JSON.stringify(event.Result));
                         break;
                     case "SpeechHypothesisEvent" :
                         // UpdateRecognizedHypothesis(event.Result.Text);
-                        // console.log(JSON.stringify(event.Result)); // check console for other information in result
                         break;
                     case "SpeechEndDetectedEvent" :
                         OnSpeechEndDetected();
@@ -130,7 +86,6 @@
                     case "RecognitionEndedEvent" :
                         OnComplete();
                         UpdateStatus("Idle");
-                        // console.log(JSON.stringify(event)); // Debug information
                         break;
                 }
             })
@@ -144,7 +99,6 @@
 
         // Stop the Recognition.
         function RecognizerStop(SDK, recognizer) {
-            // recognizer.AudioSource.Detach(audioNodeId) can be also used here. (audioNodeId is part of ListeningStartedEvent)
             recognizer.AudioSource.TurnOff();
         }
     </script>
@@ -174,19 +128,9 @@
                 var buttonContainer = document.getElementsByClassName('btn-container')[0];
                 buttonContainer.innerHTML = pressed;
 
-                // hypothesisDiv.innerHTML = "";
-                // phraseDiv.innerHTML = "";
                 RecognizerStart(SDK, recognizer);
                 startBtn.disabled = true;
-                // stopBtn.disabled = false;
             });
-
-            // stopBtn.addEventListener("click", function () {
-            //     RecognizerStop(SDK);
-            //     startBtn.disabled = false;
-            //     stopBtn.disabled = true;
-            // });
-
             Initialize(function (speechSdk) {
                 SDK = speechSdk;
                 startBtn.disabled = false;
@@ -202,15 +146,14 @@
         }
 
         function UpdateRecognizedHypothesis(text) {
-            //hypothesisDiv.innerHTML = text;
+
         }
 
         function OnSpeechEndDetected() {
-            // stopBtn.disabled = true;
+
         }
 
         function UpdateRecognizedPhrase(json) {
-             //phraseDiv.innerText = JSON.parse(json).DisplayText;
              var info = JSON.parse(json).DisplayText;
 
 
@@ -219,14 +162,12 @@
 
         function OnComplete() {
             startBtn.disabled = false;
-            // stopBtn.disabled = true;
         }
 
         function getSentimentAnalysis(info) {
             var data = JSON.stringify({
                 "text": info
             })
-            // console.log(info);
 
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = true;
@@ -242,8 +183,7 @@
             xhr.send(data);
         }
 
-        function handleData(data, spoken) {
-            // console.log('data', data);
+        function handleData(data, spoken) {'
             data = JSON.parse(data);
             var tones = data.document_tone.tone_categories[0].tones
             var stringifiedTones = JSON.stringify(tones);
@@ -251,8 +191,6 @@
             //document.getElementById('responseDiv');
             var dominantEmotion = getDominantEmotion(tones);
             //responseDiv.innerText = stringifiedTones;
-            // console.log(dominantEmotion);
-
             personSpeaks(spoken, dominantEmotion);
         }
 
@@ -270,10 +208,6 @@
         }
 
         function personSpeaks(spoken, emotion) {
-            // console.log('spoken', spoken);
-            // console.log('emotion', emotion);
-            // console.log('state', state);
-
             var feeling = getFeeling(emotion);
             
             var person = state ? 'Customer' : 'Customer Service Rep';
@@ -311,10 +245,6 @@
 
             var output = document.getElementsByClassName('talk-output')[0];
             output.appendChild(talkGrid);
-
-
-
-
             changeState();
         }
 
@@ -349,7 +279,4 @@
           return feeling;
         }
     </script>
-
-
-
 </body>
