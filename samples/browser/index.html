@@ -183,7 +183,7 @@
             xhr.send(data);
         }
 
-        function handleData(data, spoken) {'
+        function handleData(data, spoken) {
             data = JSON.parse(data);
             var tones = data.document_tone.tone_categories[0].tones
             var stringifiedTones = JSON.stringify(tones);
