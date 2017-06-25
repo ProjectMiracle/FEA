@@ -1,15 +1,15 @@
-const fs = require('fs');
-const http = require('http');
-const PORT = 8000;
-const https = require('https');
-const qs = require('querystring');
-const config = require('./config/config.js');
+var fs = require('fs');
+var http = require('http');
+var PORT = 8000;
+var https = require('https');
+var qs = require('querystring');
+var config = require('./config/config.js');
 
-const path = require('path');
-let FILE = process.argv[2];
+var path = require('path');
+var FILE = process.argv[2];
 FILE = path.resolve('./', FILE);
 
-const server = http.createServer((req, res) => {
+var server = http.createServer((req, res) => {
   console.log('req url', req.url);
   console.log(req.method);
   switch (req.method) {
