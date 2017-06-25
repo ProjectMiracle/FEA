@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box; /* places content inside div box */
+}
+
+body {
+  font-family: 'Muli', sans-serif;
+  width: 100%;
+  margin: 0;
+  padding 0;
+  background-color: #fafafa;
+}
+
+/* Header */
+
+.header-container {
+	width: 100%;
+	height: 56px;
+	background-color: #fff;
+	box-shadow: 1px 1px 4px 0 rgba(213, 213, 213, 0.5);
+  display: flex;
+  /*border: 1px solid black;*/
+}
+
+#header-header {
+  width: 960px;
+  height: 56px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+	width: 172px;
+	height: 30px;
+	object-fit: contain;
+}
+
+.btn-container {
+  width: 960px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  /*border: 1px solid black;*/
+}
+
+.btn-talk {
+	width: 120px;
+	height: 120px;
+	object-fit: contain;
+  cursor: pointer;
+  padding: auto;
+  margin: 40px;
+  display: flex;
+  text-align: center;
+  /*border: 1px solid black;*/
+
+.btn-talk:active {
+
+}
+
+.
