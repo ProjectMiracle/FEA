@@ -10,9 +10,7 @@ var FILE = process.argv[2];
 FILE = path.resolve('./', FILE);
 
 var server = http.createServer((req, res) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  console.log('req url', req.url);
-  console.log(req.method);
+  res.writeHead(200, {"Access-Control-Allow-Origin": "*"})
   switch (req.method) {
     case 'GET':
       if (req.url == '/') {
