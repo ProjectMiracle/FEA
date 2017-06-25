@@ -43,6 +43,7 @@
     "patchRelease": "npm install & gulp patchRelease",
     "featureRelease": "npm install & gulp featureRelease",
     "majorRelease": "npm install & gulp majorRelease",
-    "preRelease": "npm install & gulp preRelease"
+    "preRelease": "npm install & gulp preRelease",
+    "start": "node server.js samples/browser/index.html"
   }
 }
