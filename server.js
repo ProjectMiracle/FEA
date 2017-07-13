@@ -44,7 +44,7 @@ function handleAPI(req, res) {
   });
   req.on('end', function() {
     var formData = JSON.parse(reqBody);
-    console.log('fd', formData);
+    // console.log('fd', formData);
 
     var options = {
       "method": "POST",
@@ -66,7 +66,7 @@ function handleAPI(req, res) {
 
       response.on("end", function () {
         var body = Buffer.concat(chunks);
-        console.log(body.toString());
+        // console.log(body.toString());
         res.end(body.toString());
       });
     });
