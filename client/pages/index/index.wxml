@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 用户登录测试 -->
+  <view class="userinfo" bindtap="login">
+    <image class="userinfo-avatar" src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}" background-size="cover"></image>
+    <view>
+      <text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击登录'}}</text>
+      <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
+    </view>
+  </view>
+
+  <!-- 按下说话 -->
+  <view class="speaker">
+    <view class="speaker-container">
+      <image class="speaker-image" src="{{pressed ? './speaker-press.png' : './speaker.png'}}" mode="aspectFit" bindtap="tapVoiceButton"></image>
+    </view>
+    <view class="speaker-text" bindtap="playVoiceButton">
+      <text>{{voiceButtonName}}</text>
+    </view>
+  </view>
+
+  <!-- 选择语言 -->
+  <view class="language">
+    <view class="language-container">
+      <image class="language-icon" src="./language.png"></image>
+    </view>
+    <view class="language-text">
+      <text>普通话</text>
+    </view>
+    <view class="language-container">
+      <switch bindchange="switchLanguage" color="#007AFF" />
+    </view>
+    <view class="language-text">
+      <text class="language-cantonese">粤语</text>
+    </view>
+  </view>
+
+  <audio src="{{src}}" id="response" ></audio>
+</view>

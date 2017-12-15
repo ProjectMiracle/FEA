@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": "standard",
+  "rules": {
+    "strict": 0,
+    "no-underscore-dangle": 0,
+    "indent": [2, 4, {"SwitchCase": 0}],
+    "no-eval": 2,
+    "no-octal": 2,
+    "no-redeclare": 2,
+    "no-fallthrough": 2,
+    "array-bracket-spacing": [2, "never"],
+    "max-nested-callbacks": [2, 3],
+    "no-this-before-super": 2,
+    "max-depth": [2, 3],
+    "max-statements": [2, 100]
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  }
+}
